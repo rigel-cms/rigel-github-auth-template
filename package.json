@@ -1,0 +1,48 @@
+{
+  "name": "@rigel-cms/github-auth-template",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone GitHub App authenticator for Rigel CMS on Cloudflare, Netlify or Vercel.",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "FreshJuice",
+    "email": "contact@freshjuice.dev",
+    "url": "https://freshjuice.dev/"
+  },
+  "contributors": [
+    {
+      "name": "Alex Zappa",
+      "email": "alex@zappa.dev",
+      "url": "https://alex.zappa.dev/"
+    }
+  ],
+  "engines": { "node": ">=24 <25" },
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "pnpm check",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:browser": "node --experimental-strip-types scripts/check-browser.mjs",
+    "test:platform": "node scripts/check-platform.mjs",
+    "buttons": "node scripts/deploy-buttons.mjs",
+    "dev:cloudflare": "wrangler dev --local --port 8789",
+    "dev:netlify": "pnpm --package=netlify-cli@27.14.2 dlx netlify dev --offline --port 8888",
+    "dev:vercel": "pnpm --package=vercel@65.2.0 dlx vercel dev --listen 3000"
+  },
+  "cloudflare": {
+    "bindings": {
+      "GH_CLIENT_ID": { "description": "Client ID from your own GitHub App, not its numeric App ID." },
+      "GH_CLIENT_SECRET": { "description": "Client secret from your own GitHub App. Keep this server-side." },
+      "AUTH_SECRET": { "description": "Independent cryptographically random secret of at least 32 characters for encrypted cookies." },
+      "SITE_ORIGIN": { "description": "Exact HTTPS gateway origin without a trailing slash. Register this origin plus /callback on your GitHub App." },
+      "ALLOWED_ORIGINS": { "description": "Leave blank for destination confirmation, or supply exact comma-separated editor origins for restricted mode." }
+    }
+  },
+  "dependencies": { "hono": "4.13.13" },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "wrangler": "4.152.0"
+  }
+}

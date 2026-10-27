@@ -1,0 +1,14 @@
+node_modules/
+_temp/
+dist/
+.astro/
+.wrangler/
+.netlify/
+.vercel/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+.DS_Store

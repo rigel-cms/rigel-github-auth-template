@@ -1,0 +1,26 @@
+[build]
+command = "pnpm build"
+publish = "public"
+
+[build.environment]
+NODE_VERSION = "24"
+
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/auth"
+status = 200
+force = true
+
+[dev]
+framework = "#static"
+publish = "public"
+
+[template.environment]
+GH_CLIENT_ID = "GitHub App client ID"
+GH_CLIENT_SECRET = "GitHub App client secret (server-only)"
+AUTH_SECRET = "Independent random secret of at least 32 characters"
+SITE_ORIGIN = "Exact deployed gateway origin, without a trailing slash"

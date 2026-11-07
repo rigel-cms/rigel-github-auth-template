@@ -121,7 +121,7 @@ The callback posts `{ type: 'rigel:auth', provider: 'github', nonce, access_toke
 
 The gateway stores the refresh token only in an encrypted HttpOnly cookie. `POST /refresh` is bodyless, same-origin only and requires `X-Rigel-CSRF: 1`; it is not an editor cross-origin API. There is no automatic refresh across origins. Reopen the login popup when the editor's access token expires. Avoid concurrent refresh calls.
 
-Rigel CMS 1.0.0-rc.1 stores its access-token session in `localStorage`, separate from the gateway's HttpOnly refresh cookie. Same-origin editor scripts can read that session.
+Rigel CMS 1.0.0 stores its access-token session in `localStorage`, separate from the gateway's HttpOnly refresh cookie. Same-origin editor scripts can read that session.
 
 ## Live test checklist
 

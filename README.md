@@ -82,6 +82,8 @@ Choose a provider to create your own deployment. Register [your GitHub App](#reg
 
 ### Cloudflare Workers
 
+Workers does not support `fetch` with `redirect: "error"`. The shared token exchange uses `redirect: "manual"` and rejects redirects and other unsuccessful responses; `pnpm test` verifies this in workerd.
+
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2Frigel-cms%2Frigel-github-auth-template)
 
 1. Connect your repository to Workers Builds, or use the Wrangler CLI from this directory. Keep `cloudflare/index.ts` as the entry point in `wrangler.jsonc`.
